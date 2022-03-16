@@ -11,15 +11,15 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import tk.imperialz.Main;
+import com.github.caaarlowsz.wopemc.kitpvp.WopePvP;
 import tk.imperialz.apis.KitAPI;
 import tk.imperialz.apis.WarpsMenu;
 import tk.imperialz.warps.WarpsAPI;
 
 public class Warp implements CommandExecutor {
-	public Main m;
+	public WopePvP m;
 
-	public Warp(final Main m) {
+	public Warp(final WopePvP m) {
 		this.m = m;
 	}
 
@@ -33,8 +33,8 @@ public class Warp implements CommandExecutor {
 			if (Args[0].equalsIgnoreCase("fps")) {
 				p.closeInventory();
 				p.getInventory().setArmorContents((ItemStack[]) null);
-				p.sendMessage("§3§lWARP §fVoc\u00ea est\u00e1 sendo teleportado.");
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), (Runnable) new Runnable() {
+				p.sendMessage("ï¿½3ï¿½lWARP ï¿½fVoc\u00ea est\u00e1 sendo teleportado.");
+				Bukkit.getScheduler().scheduleSyncDelayedTask(WopePvP.getPlugin(), (Runnable) new Runnable() {
 					@Override
 					public void run() {
 						p.setGameMode(GameMode.SURVIVAL);
@@ -49,8 +49,8 @@ public class Warp implements CommandExecutor {
 			} else if (Args[0].equalsIgnoreCase("Evento")) {
 				p.closeInventory();
 				p.getInventory().setArmorContents((ItemStack[]) null);
-				p.sendMessage("§3§lWARP §fVoc\u00ea est\u00e1 sendo teleportado.");
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), (Runnable) new Runnable() {
+				p.sendMessage("ï¿½3ï¿½lWARP ï¿½fVoc\u00ea est\u00e1 sendo teleportado.");
+				Bukkit.getScheduler().scheduleSyncDelayedTask(WopePvP.getPlugin(), (Runnable) new Runnable() {
 					@Override
 					public void run() {
 						p.setGameMode(GameMode.SURVIVAL);
@@ -64,7 +64,7 @@ public class Warp implements CommandExecutor {
 			} else if (Args[0].equalsIgnoreCase("knockback")) {
 				p.closeInventory();
 				p.getInventory().setArmorContents((ItemStack[]) null);
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), (Runnable) new Runnable() {
+				Bukkit.getScheduler().scheduleSyncDelayedTask(WopePvP.getPlugin(), (Runnable) new Runnable() {
 					@Override
 					public void run() {
 						p.setGameMode(GameMode.SURVIVAL);
@@ -76,17 +76,17 @@ public class Warp implements CommandExecutor {
 						WarpsAPI.Ir(p, "Knockback");
 						final ItemStack Espada = new ItemStack(Material.STICK);
 						final ItemMeta kEspada = Espada.getItemMeta();
-						kEspada.setDisplayName("§eGraveto");
+						kEspada.setDisplayName("ï¿½eGraveto");
 						Espada.setItemMeta(kEspada);
 						Espada.addUnsafeEnchantment(Enchantment.KNOCKBACK, 3);
 						p.getInventory().setItem(0, Espada);
 					}
 				}, 1L);
 			} else if (Args[0].equalsIgnoreCase("1v1")) {
-				p.sendMessage("§3§lWARP §fVoc\u00ea est\u00e1 sendo teleportado.");
+				p.sendMessage("ï¿½3ï¿½lWARP ï¿½fVoc\u00ea est\u00e1 sendo teleportado.");
 				p.closeInventory();
 				p.getInventory().setArmorContents((ItemStack[]) null);
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), (Runnable) new Runnable() {
+				Bukkit.getScheduler().scheduleSyncDelayedTask(WopePvP.getPlugin(), (Runnable) new Runnable() {
 					@Override
 					public void run() {
 						p.setGameMode(GameMode.SURVIVAL);
@@ -98,21 +98,21 @@ public class Warp implements CommandExecutor {
 						WarpsAPI.Ir(p, "1v1");
 						final ItemStack Espada = new ItemStack(Material.BLAZE_ROD);
 						final ItemMeta kEspada = Espada.getItemMeta();
-						kEspada.setDisplayName("§e1v1");
+						kEspada.setDisplayName("ï¿½e1v1");
 						Espada.setItemMeta(kEspada);
 						final ItemStack Espada2 = new ItemStack(Material.INK_SACK, 1, (short) 8);
 						final ItemMeta kEspada2 = Espada2.getItemMeta();
-						kEspada2.setDisplayName("§ePartida Rapida");
+						kEspada2.setDisplayName("ï¿½ePartida Rapida");
 						Espada2.setItemMeta(kEspada2);
 						p.getInventory().setItem(3, Espada);
 						p.getInventory().setItem(5, Espada2);
 					}
 				}, 1L);
 			} else if (Args[0].equalsIgnoreCase("challenge")) {
-				p.sendMessage("§3§lWARP §fVoc\u00ea est\u00e1 sendo teleportado.");
+				p.sendMessage("ï¿½3ï¿½lWARP ï¿½fVoc\u00ea est\u00e1 sendo teleportado.");
 				p.closeInventory();
 				p.getInventory().setArmorContents((ItemStack[]) null);
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), (Runnable) new Runnable() {
+				Bukkit.getScheduler().scheduleSyncDelayedTask(WopePvP.getPlugin(), (Runnable) new Runnable() {
 					@Override
 					public void run() {
 						p.setGameMode(GameMode.SURVIVAL);

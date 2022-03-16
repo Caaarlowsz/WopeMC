@@ -7,26 +7,26 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
-import tk.imperialz.Main;
+import com.github.caaarlowsz.wopemc.kitpvp.WopePvP;
 
 public class Tpall implements CommandExecutor {
-	public Main m;
+	public WopePvP m;
 
-	public Tpall(final Main m) {
+	public Tpall(final WopePvP m) {
 		this.m = m;
 	}
 
 	public boolean onCommand(final CommandSender Sender, final Command Cmd, final String Label, final String[] Args) {
 		final Player p = (Player) Sender;
 		if (!this.m.perm.isOwner(p)) {
-			p.sendMessage(Main.perma);
+			p.sendMessage(WopePvP.perma);
 			return true;
 		}
 		Player[] arrayOfPlayer;
 		for (int j = (arrayOfPlayer = Bukkit.getOnlinePlayers()).length, i = 0; i < j; ++i) {
 			final Player All = arrayOfPlayer[i];
 			All.teleport((Entity) p);
-			All.sendMessage("§a§lTPALL §fTodos os jogadores foram teleportados para " + p.getDisplayName());
+			All.sendMessage("ï¿½aï¿½lTPALL ï¿½fTodos os jogadores foram teleportados para " + p.getDisplayName());
 		}
 		return false;
 	}

@@ -52,7 +52,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import tk.imperialz.Main;
+import com.github.caaarlowsz.wopemc.kitpvp.WopePvP;
 import tk.imperialz.apis.APITag;
 import tk.imperialz.apis.KitAPI;
 import tk.imperialz.comandos.Build;
@@ -66,7 +66,7 @@ public class Habilidades implements Listener {
 	public boolean sendThroughInventory;
 	private transient HashMap<ItemStack, Long> monkStaff;
 	private ArrayList<String> cool;
-	public static Main plugin;
+	public static WopePvP plugin;
 	static ArrayList<String> emhotpotato;
 	public static HashMap<String, ItemStack[]> salvararmor;
 	public static ArrayList<String> emphantom;
@@ -127,7 +127,7 @@ public class Habilidades implements Listener {
 		if (KitAPI.getkit(p) == "Anchor") {
 			p.setVelocity(new Vector());
 			p.playSound(p.getLocation(), Sound.ANVIL_BREAK, 4.0f, 4.0f);
-			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask((Plugin) Main.instancea,
+			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask((Plugin) WopePvP.instancea,
 					(Runnable) new Runnable() {
 						@Override
 						public void run() {
@@ -138,7 +138,7 @@ public class Habilidades implements Listener {
 		if (KitAPI.getkit(a) == "Anchor") {
 			a.playSound(a.getLocation(), Sound.ANVIL_BREAK, 4.0f, 4.0f);
 			p.setVelocity(new Vector());
-			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask((Plugin) Main.instancea,
+			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask((Plugin) WopePvP.instancea,
 					(Runnable) new Runnable() {
 						@Override
 						public void run() {
@@ -167,17 +167,17 @@ public class Habilidades implements Listener {
 				&& (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK)
 				&& p.getInventory().getItemInHand().getType() == Material.BONE) {
 			if (KitAPI.add(p)) {
-				p.sendMessage("§cVoc\u00ea est\u00e1 em cooldown.");
+				p.sendMessage("ï¿½cVoc\u00ea est\u00e1 em cooldown.");
 				return;
 			}
 			final Vector velo2 = p.getLocation().getDirection().normalize().multiply(100);
 			velo2.add(new Vector(Math.random() * 0.0 - 0.0, 0.0, 0.0));
 			KitAPI.add(p, 30);
 			((Arrow) p.launchProjectile(Arrow.class)).setVelocity(velo2);
-			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(WopePvP.plugin, (Runnable) new Runnable() {
 				@Override
 				public void run() {
-					p.sendMessage("§7Voc\u00ea j\u00e1 pode usar novamente.");
+					p.sendMessage("ï¿½7Voc\u00ea j\u00e1 pode usar novamente.");
 				}
 			}, 600L);
 		}
@@ -210,55 +210,55 @@ public class Habilidades implements Listener {
 			final Player k = (Player) e.getRightClicked();
 			if (p.getItemInHand().getType().equals((Object) Material.TNT) && KitAPI.getkit(p) == "HotPotato") {
 				if (Habilidades.fighting.containsKey(p.getName())) {
-					p.sendMessage("§cVoc\u00ea n\u00e3o pode usar em gladiator, mas recebeu efeitos.");
+					p.sendMessage("ï¿½cVoc\u00ea n\u00e3o pode usar em gladiator, mas recebeu efeitos.");
 					p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 100, 1));
 				} else {
 					if (KitAPI.add(p)) {
-						p.sendMessage("§cVoc\u00ea est\u00e1 em cooldown.");
+						p.sendMessage("ï¿½cVoc\u00ea est\u00e1 em cooldown.");
 						return;
 					}
 					KitAPI.add(p, 20);
 					Habilidades.emhotpotato.add(k.getName());
-					p.sendMessage("§aHotPotato colocada.");
-					k.sendMessage("§cVoc\u00ea est\u00e1 com uma HotPotato, tire-a em 5 segundos ou exploda.");
-					k.sendMessage("§cClique com o botao direito na hotpotato para tir\u00e1-la.");
+					p.sendMessage("ï¿½aHotPotato colocada.");
+					k.sendMessage("ï¿½cVoc\u00ea est\u00e1 com uma HotPotato, tire-a em 5 segundos ou exploda.");
+					k.sendMessage("ï¿½cClique com o botao direito na hotpotato para tir\u00e1-la.");
 					final ItemStack tnt = new ItemStack(Material.TNT);
 					final ItemMeta tntmeta = tnt.getItemMeta();
-					tntmeta.setDisplayName("§cTNT");
+					tntmeta.setDisplayName("ï¿½cTNT");
 					tnt.setItemMeta(tntmeta);
 					k.getInventory().setHelmet(tnt);
 					new BukkitRunnable() {
 						public void run() {
 							if (Habilidades.emhotpotato.contains(k.getName())) {
-								k.sendMessage("§cVoc\u00ea ainda est\u00e1 com a TNT, explodindo em 4 segundos.");
-								k.sendMessage("§cClique com o botao direito na hotpotato para tir\u00e1-la.");
+								k.sendMessage("ï¿½cVoc\u00ea ainda est\u00e1 com a TNT, explodindo em 4 segundos.");
+								k.sendMessage("ï¿½cClique com o botao direito na hotpotato para tir\u00e1-la.");
 							}
 						}
-					}.runTaskLater((Plugin) Main.getInstance(), 0L);
+					}.runTaskLater((Plugin) WopePvP.getInstance(), 0L);
 					new BukkitRunnable() {
 						public void run() {
 							if (Habilidades.emhotpotato.contains(k.getName())) {
-								k.sendMessage("§cVoc\u00ea ainda est\u00e1 com a TNT, explodindo em 3 segundos.");
-								k.sendMessage("§cClique com o botao direito na hotpotato para tir\u00e1-la.");
+								k.sendMessage("ï¿½cVoc\u00ea ainda est\u00e1 com a TNT, explodindo em 3 segundos.");
+								k.sendMessage("ï¿½cClique com o botao direito na hotpotato para tir\u00e1-la.");
 							}
 						}
-					}.runTaskLater((Plugin) Main.getInstance(), 20L);
+					}.runTaskLater((Plugin) WopePvP.getInstance(), 20L);
 					new BukkitRunnable() {
 						public void run() {
 							if (Habilidades.emhotpotato.contains(k.getName())) {
-								k.sendMessage("§cVoc\u00ea ainda est\u00e1 com a TNT, explodindo em 2 segundos.");
-								k.sendMessage("§cClique com o botao direito na hotpotato para tir\u00e1-la.");
+								k.sendMessage("ï¿½cVoc\u00ea ainda est\u00e1 com a TNT, explodindo em 2 segundos.");
+								k.sendMessage("ï¿½cClique com o botao direito na hotpotato para tir\u00e1-la.");
 							}
 						}
-					}.runTaskLater((Plugin) Main.getInstance(), 40L);
+					}.runTaskLater((Plugin) WopePvP.getInstance(), 40L);
 					new BukkitRunnable() {
 						public void run() {
 							if (Habilidades.emhotpotato.contains(k.getName())) {
-								k.sendMessage("§cVoc\u00ea ainda est\u00e1 com a TNT, explodindo em 1 segundos.");
-								k.sendMessage("§cClique com o botao direito na hotpotato para tir\u00e1-la.");
+								k.sendMessage("ï¿½cVoc\u00ea ainda est\u00e1 com a TNT, explodindo em 1 segundos.");
+								k.sendMessage("ï¿½cClique com o botao direito na hotpotato para tir\u00e1-la.");
 							}
 						}
-					}.runTaskLater((Plugin) Main.getInstance(), 60L);
+					}.runTaskLater((Plugin) WopePvP.getInstance(), 60L);
 					new BukkitRunnable() {
 						public void run() {
 							if (Habilidades.emhotpotato.contains(k.getName())) {
@@ -268,11 +268,11 @@ public class Habilidades implements Listener {
 								Habilidades.emhotpotato.remove(k.getName());
 							}
 						}
-					}.runTaskLater((Plugin) Main.getInstance(), 80L);
-					Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+					}.runTaskLater((Plugin) WopePvP.getInstance(), 80L);
+					Bukkit.getScheduler().scheduleSyncDelayedTask(WopePvP.plugin, (Runnable) new Runnable() {
 						@Override
 						public void run() {
-							p.sendMessage("§7Voc\u00ea j\u00e1 pode usar novamente.");
+							p.sendMessage("ï¿½7Voc\u00ea j\u00e1 pode usar novamente.");
 						}
 					}, 500L);
 				}
@@ -290,7 +290,7 @@ public class Habilidades implements Listener {
 			e.setCancelled(true);
 			p.getInventory().setHelmet((ItemStack) null);
 			p.playSound(p.getLocation(), Sound.CREEPER_HISS, 2.0f, 2.0f);
-			p.sendMessage("§aVoc\u00ea desarmou a HotPotato.");
+			p.sendMessage("ï¿½aVoc\u00ea desarmou a HotPotato.");
 			p.closeInventory();
 		}
 	}
@@ -430,7 +430,7 @@ public class Habilidades implements Listener {
 				&& (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK)
 				&& p.getItemInHand().getType() == Material.FEATHER) {
 			if (KitAPI.add(p)) {
-				p.sendMessage("§cVoc\u00ea est\u00e1 em cooldown");
+				p.sendMessage("ï¿½cVoc\u00ea est\u00e1 em cooldown");
 				return;
 			}
 			Habilidades.salvararmor.put(p.getName(), p.getInventory().getArmorContents());
@@ -441,22 +441,22 @@ public class Habilidades implements Listener {
 			p.getInventory().setArmorContents((ItemStack[]) null);
 			final ItemStack Peito = new ItemStack(Material.LEATHER_CHESTPLATE);
 			final LeatherArmorMeta kPeito = (LeatherArmorMeta) Peito.getItemMeta();
-			kPeito.setDisplayName("§cPeitoral");
+			kPeito.setDisplayName("ï¿½cPeitoral");
 			kPeito.setColor(Color.GREEN);
 			Peito.setItemMeta((ItemMeta) kPeito);
 			final ItemStack Cal\u00e7a = new ItemStack(Material.LEATHER_LEGGINGS);
 			final LeatherArmorMeta kCa\u00e7a = (LeatherArmorMeta) Cal\u00e7a.getItemMeta();
-			kCa\u00e7a.setDisplayName("§cCal\u00e7a");
+			kCa\u00e7a.setDisplayName("ï¿½cCal\u00e7a");
 			kCa\u00e7a.setColor(Color.GREEN);
 			Cal\u00e7a.setItemMeta((ItemMeta) kCa\u00e7a);
 			final ItemStack Bota = new ItemStack(Material.LEATHER_BOOTS);
 			final LeatherArmorMeta kBota = (LeatherArmorMeta) Bota.getItemMeta();
-			kBota.setDisplayName("§cBotas");
+			kBota.setDisplayName("ï¿½cBotas");
 			kBota.setColor(Color.GREEN);
 			Bota.setItemMeta((ItemMeta) kBota);
 			final ItemStack Capacete = new ItemStack(Material.LEATHER_HELMET);
 			final LeatherArmorMeta kCasapete = (LeatherArmorMeta) Capacete.getItemMeta();
-			kCasapete.setDisplayName("§cCapacete");
+			kCasapete.setDisplayName("ï¿½cCapacete");
 			kCasapete.setColor(Color.GREEN);
 			Capacete.setItemMeta((ItemMeta) kCasapete);
 			p.getInventory().setChestplate(Peito);
@@ -465,40 +465,40 @@ public class Habilidades implements Listener {
 			p.getInventory().setBoots(Bota);
 			p.updateInventory();
 			KitAPI.add(p, 20);
-			Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin) Main.getInstance(), (Runnable) new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin) WopePvP.getInstance(), (Runnable) new Runnable() {
 				@Override
 				public void run() {
-					p.sendMessage("§cSeu phantom est\u00e1 acabando em §b5§7s");
+					p.sendMessage("ï¿½cSeu phantom est\u00e1 acabando em ï¿½b5ï¿½7s");
 				}
 			}, 0L);
-			Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin) Main.getInstance(), (Runnable) new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin) WopePvP.getInstance(), (Runnable) new Runnable() {
 				@Override
 				public void run() {
-					p.sendMessage("§cSeu phantom est\u00e1 acabando em §b4§7s");
+					p.sendMessage("ï¿½cSeu phantom est\u00e1 acabando em ï¿½b4ï¿½7s");
 				}
 			}, 20L);
-			Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin) Main.getInstance(), (Runnable) new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin) WopePvP.getInstance(), (Runnable) new Runnable() {
 				@Override
 				public void run() {
-					p.sendMessage("§cSeu phantom est\u00e1 acabando em §b3§7s");
+					p.sendMessage("ï¿½cSeu phantom est\u00e1 acabando em ï¿½b3ï¿½7s");
 				}
 			}, 40L);
-			Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin) Main.getInstance(), (Runnable) new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin) WopePvP.getInstance(), (Runnable) new Runnable() {
 				@Override
 				public void run() {
-					p.sendMessage("§cSeu phantom est\u00e1 acabando em §b2§7s");
+					p.sendMessage("ï¿½cSeu phantom est\u00e1 acabando em ï¿½b2ï¿½7s");
 				}
 			}, 60L);
-			Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin) Main.getInstance(), (Runnable) new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin) WopePvP.getInstance(), (Runnable) new Runnable() {
 				@Override
 				public void run() {
-					p.sendMessage("§cSeu phantom est\u00e1 acabando em §b1§7s");
+					p.sendMessage("ï¿½cSeu phantom est\u00e1 acabando em ï¿½b1ï¿½7s");
 				}
 			}, 80L);
-			Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin) Main.getInstance(), (Runnable) new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin) WopePvP.getInstance(), (Runnable) new Runnable() {
 				@Override
 				public void run() {
-					p.sendMessage("§7O §bfly acabou");
+					p.sendMessage("ï¿½7O ï¿½bfly acabou");
 					Habilidades.emphantom.remove(p.getName());
 					p.getInventory().setArmorContents((ItemStack[]) Habilidades.salvararmor.get(p.getName()));
 					p.updateInventory();
@@ -512,10 +512,10 @@ public class Habilidades implements Listener {
 					p.updateInventory();
 				}
 			}, 100L);
-			Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin) Main.getInstance(), (Runnable) new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin) WopePvP.getInstance(), (Runnable) new Runnable() {
 				@Override
 				public void run() {
-					p.sendMessage("§aVoce saiu de cooldown.");
+					p.sendMessage("ï¿½aVoce saiu de cooldown.");
 				}
 			}, 400L);
 		}
@@ -544,8 +544,8 @@ public class Habilidades implements Listener {
 				if (c <= 30) {
 					e.setDamage(e.getDamage() + 2.0);
 					p.getWorld().playEffect(p.getLocation(), Effect.STEP_SOUND, (Object) Material.WATER, 100);
-					p.sendMessage("§cVoc\u00ea recebeu um golpe critico de " + d.getName());
-					d.sendMessage("§cVoc\u00ea deu um golpe critico em " + p.getName());
+					p.sendMessage("ï¿½cVoc\u00ea recebeu um golpe critico de " + d.getName());
+					d.sendMessage("ï¿½cVoc\u00ea deu um golpe critico em " + p.getName());
 				}
 			}
 		}
@@ -567,7 +567,7 @@ public class Habilidades implements Listener {
 		if (e.getCaught() instanceof Player && KitAPI.getkit(p) == "Launcher") {
 			final Player t = (Player) e.getCaught();
 			if (this.hasCooldown()) {
-				p.sendMessage("§cFaltam " + this.cooldownTimeRemaining() + " para o cooldown acabar!");
+				p.sendMessage("ï¿½cFaltam " + this.cooldownTimeRemaining() + " para o cooldown acabar!");
 				return;
 			}
 			t.setVelocity(t.getVelocity().setY(1.0));
@@ -767,7 +767,7 @@ public class Habilidades implements Listener {
 		}
 		if (KitAPI.getkit(p) == "Turtle") {
 			e.setCancelled(true);
-			p.sendMessage("§cVoce nao pode bater enquanto estiver de shift");
+			p.sendMessage("ï¿½cVoce nao pode bater enquanto estiver de shift");
 		}
 	}
 
@@ -779,7 +779,7 @@ public class Habilidades implements Listener {
 			final Player localPlayer2 = (Player) paramEntityDamageByEntityEvent.getEntity();
 			if (KitAPI.getkit(localPlayer1) == "Ninja") {
 				this.a.put(localPlayer1, localPlayer2);
-				Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+				Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(WopePvP.plugin, (Runnable) new Runnable() {
 					@Override
 					public void run() {
 						Habilidades.cooldownbk.remove(localPlayer1);
@@ -806,20 +806,20 @@ public class Habilidades implements Listener {
 				if (this.b.get(localPlayer1) == null || this.b.get(localPlayer1) < System.currentTimeMillis()) {
 					if (localPlayer1.getLocation().distance(localPlayer2.getLocation()) < 100.0) {
 						if (Habilidades.noExecut.contains(localPlayer1)) {
-							localPlayer2.sendMessage("§cEsse player est\u00e1 em um gladiator");
+							localPlayer2.sendMessage("ï¿½cEsse player est\u00e1 em um gladiator");
 							return;
 						}
 						if (Habilidades.noExecut.contains(localPlayer2)) {
-							localPlayer1.sendMessage("§cHabilidade proibida em gladiator");
+							localPlayer1.sendMessage("ï¿½cHabilidade proibida em gladiator");
 							return;
 						}
 						localPlayer1.teleport(localPlayer2.getLocation());
 						this.b.put(localPlayer1, System.currentTimeMillis() + 10000L);
 					} else {
-						localPlayer1.sendMessage("§cN\u00e3o \u00e9 poss\u00edvel se teletransportar.");
+						localPlayer1.sendMessage("ï¿½cN\u00e3o \u00e9 poss\u00edvel se teletransportar.");
 					}
 				} else {
-					localPlayer1.sendMessage("§cVoc\u00ea est\u00e1 em cooldown de: " + str + " segundos.");
+					localPlayer1.sendMessage("ï¿½cVoc\u00ea est\u00e1 em cooldown de: " + str + " segundos.");
 				}
 			}
 		}
@@ -850,7 +850,7 @@ public class Habilidades implements Listener {
 				lastUsed = this.monkStaff.get(item);
 			}
 			if (lastUsed + 15000L > System.currentTimeMillis()) {
-				event.getPlayer().sendMessage(String.format("§cVoc\u00ea est\u00e1 em cooldown de ",
+				event.getPlayer().sendMessage(String.format("ï¿½cVoc\u00ea est\u00e1 em cooldown de ",
 						-(System.currentTimeMillis() - (lastUsed + 15000L)) / 1000L));
 			} else {
 				final PlayerInventory inv = ((Player) event.getRightClicked()).getInventory();
@@ -899,20 +899,20 @@ public class Habilidades implements Listener {
 				if (this.b.get(localPlayer1) == null || this.b.get(localPlayer1) < System.currentTimeMillis()) {
 					if (localPlayer1.getLocation().distance(localPlayer2.getLocation()) < 50.0) {
 						if (Habilidades.noExecut.contains(localPlayer1)) {
-							localPlayer2.sendMessage("§7Esse player est\u00e1 em um gladiator");
+							localPlayer2.sendMessage("ï¿½7Esse player est\u00e1 em um gladiator");
 							return;
 						}
 						if (Habilidades.noExecut.contains(localPlayer2)) {
-							localPlayer1.sendMessage("§7Habilidade proibida em gladiator");
+							localPlayer1.sendMessage("ï¿½7Habilidade proibida em gladiator");
 							return;
 						}
 						localPlayer2.teleport(localPlayer1.getLocation());
 						this.b.put(localPlayer1, System.currentTimeMillis() + 10000L);
 					} else {
-						localPlayer1.sendMessage("§cO jogador est\u00e1 muito longe.");
+						localPlayer1.sendMessage("ï¿½cO jogador est\u00e1 muito longe.");
 					}
 				} else {
-					localPlayer1.sendMessage("§cVoc\u00ea ainda est\u00e1 em cooldown de: " + str + " segundos.");
+					localPlayer1.sendMessage("ï¿½cVoc\u00ea ainda est\u00e1 em cooldown de: " + str + " segundos.");
 				}
 			}
 		}
@@ -954,7 +954,7 @@ public class Habilidades implements Listener {
 								final Block b = loc.clone().add((double) bX, (double) bY, (double) bZ).getBlock();
 								if (!b.isEmpty()) {
 									event.setCancelled(true);
-									p.sendMessage("§cVoc\u00ea n\u00e3o pode puxar nesse local");
+									p.sendMessage("ï¿½cVoc\u00ea n\u00e3o pode puxar nesse local");
 									return;
 								}
 								if (bY == 10) {
@@ -979,8 +979,8 @@ public class Habilidades implements Listener {
 					r.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 110, 5));
 					p.getInventory().remove(Material.IRON_FENCE);
 					r.getInventory().remove(Material.IRON_FENCE);
-					p.sendMessage("§fItem do §c§lGLADIATOR REMOVIDO");
-					p.sendMessage("§fCaso mate o player ele ir\u00e1 voltar para seu inventario");
+					p.sendMessage("ï¿½fItem do ï¿½cï¿½lGLADIATOR REMOVIDO");
+					p.sendMessage("ï¿½fCaso mate o player ele ir\u00e1 voltar para seu inventario");
 					Build.Build.put(p.getName(), Build.BuildStats.ON);
 					Build.Build.put(r.getName(), Build.BuildStats.ON);
 					Habilidades.noExecut.add(p);
@@ -989,7 +989,7 @@ public class Habilidades implements Listener {
 					Habilidades.fighting.put(r.getName(), p.getName());
 					p.getInventory().setItem(2, APITag.criarItem(p, Material.COBBLESTONE, ChatColor.GREEN + "Blocos",
 							new String[1], 16, (short) 0));
-					Habilidades.id2 = Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(),
+					Habilidades.id2 = Bukkit.getScheduler().scheduleSyncDelayedTask(WopePvP.getPlugin(),
 							(Runnable) new Runnable() {
 								@Override
 								public void run() {
@@ -1000,7 +1000,7 @@ public class Habilidades implements Listener {
 									}
 								}
 							}, 2400L);
-					Habilidades.id1 = Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(),
+					Habilidades.id1 = Bukkit.getScheduler().scheduleSyncDelayedTask(WopePvP.getPlugin(),
 							(Runnable) new Runnable() {
 								@Override
 								public void run() {
@@ -1061,7 +1061,7 @@ public class Habilidades implements Listener {
 		final double z = placed.getZ();
 		final Location sponge = new Location(w, x, y, z);
 		final Material block = e.getBlockReplacedState().getType();
-		Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+		Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(WopePvP.plugin, (Runnable) new Runnable() {
 			@Override
 			public void run() {
 				sponge.getBlock().setType(Material.COBBLESTONE);
@@ -1071,7 +1071,7 @@ public class Habilidades implements Listener {
 			p.setItemInHand(new ItemStack(Material.AIR));
 		}
 		p.getItemInHand().setAmount(spongesleft - 1);
-		Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+		Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(WopePvP.plugin, (Runnable) new Runnable() {
 			@Override
 			public void run() {
 				sponge.getBlock().setType(block);
@@ -1095,7 +1095,7 @@ public class Habilidades implements Listener {
 				&& Habilidades.fighting.containsKey(e.getPlayer().getName())) {
 			e.setCancelled(true);
 			e.getClickedBlock().setType(Material.GLASS);
-			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), (Runnable) new Runnable() {
+			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(WopePvP.getPlugin(), (Runnable) new Runnable() {
 				@Override
 				public void run() {
 					if (Habilidades.fighting.containsKey(e.getPlayer().getName())) {
@@ -1115,20 +1115,20 @@ public class Habilidades implements Listener {
 					k.setItemInHand(new ItemStack(Material.STONE_SWORD));
 					k.updateInventory();
 					k.playSound(k.getLocation(), Sound.LEVEL_UP, 1.0f, 1.0f);
-					k.sendMessage("§aVoc\u00ea agora subiu para o level §f1.");
+					k.sendMessage("ï¿½aVoc\u00ea agora subiu para o level ï¿½f1.");
 				} else if (k.getItemInHand().getType() == Material.STONE_SWORD) {
 					k.setItemInHand(new ItemStack(Material.STONE_SWORD));
 					k.getItemInHand().removeEnchantment(Enchantment.DAMAGE_ALL);
 					k.getItemInHand().addEnchantment(Enchantment.DAMAGE_ALL, 1);
 					k.playSound(k.getLocation(), Sound.LEVEL_UP, 1.0f, 1.0f);
-					k.sendMessage("§aVoc\u00ea agora subiu para o level §f2.");
+					k.sendMessage("ï¿½aVoc\u00ea agora subiu para o level ï¿½f2.");
 				} else if (k.getItemInHand().getType() == Material.IRON_SWORD) {
 					k.setItemInHand(new ItemStack(Material.IRON_SWORD));
 					k.getItemInHand().removeEnchantment(Enchantment.ARROW_FIRE);
 					k.getItemInHand().removeEnchantment(Enchantment.DAMAGE_ALL);
 					k.getItemInHand().addEnchantment(Enchantment.ARROW_FIRE, 1);
 					k.playSound(k.getLocation(), Sound.LEVEL_UP, 1.0f, 1.0f);
-					k.sendMessage("§aVoc\u00ea agora subiu para o level §f3.");
+					k.sendMessage("ï¿½aVoc\u00ea agora subiu para o level ï¿½f3.");
 				} else if (k.getItemInHand().getType() == Material.IRON_SWORD) {
 					k.setItemInHand(new ItemStack(Material.IRON_SWORD));
 					k.getItemInHand().removeEnchantment(Enchantment.ARROW_FIRE);
@@ -1136,11 +1136,11 @@ public class Habilidades implements Listener {
 					k.getItemInHand().addEnchantment(Enchantment.ARROW_FIRE, 2);
 					k.getItemInHand().addEnchantment(Enchantment.DAMAGE_ALL, 2);
 					k.playSound(k.getLocation(), Sound.LEVEL_UP, 1.0f, 1.0f);
-					k.sendMessage("§aVoc\u00ea agora subiu para o level §f4.");
+					k.sendMessage("ï¿½aVoc\u00ea agora subiu para o level ï¿½f4.");
 				} else if (k.getItemInHand().getType() == Material.DIAMOND_SWORD) {
 					k.setItemInHand(new ItemStack(Material.DIAMOND_SWORD));
 					k.playSound(k.getLocation(), Sound.LEVEL_UP, 1.0f, 1.0f);
-					k.sendMessage("§aVoc\u00ea agora subiu para o level §f5.");
+					k.sendMessage("ï¿½aVoc\u00ea agora subiu para o level ï¿½f5.");
 				} else if (k.getItemInHand().getType() == Material.DIAMOND_SWORD) {
 					k.setItemInHand(new ItemStack(Material.DIAMOND_SWORD));
 					k.getItemInHand().removeEnchantment(Enchantment.ARROW_FIRE);
@@ -1148,7 +1148,7 @@ public class Habilidades implements Listener {
 					k.getItemInHand().addEnchantment(Enchantment.ARROW_FIRE, 1);
 					k.getItemInHand().addEnchantment(Enchantment.DAMAGE_ALL, 1);
 					k.playSound(k.getLocation(), Sound.LEVEL_UP, 1.0f, 1.0f);
-					k.sendMessage("§aVoc\u00ea agora subiu para o level §f6.");
+					k.sendMessage("ï¿½aVoc\u00ea agora subiu para o level ï¿½f6.");
 				} else if (k.getItemInHand().getType() == Material.DIAMOND_SWORD) {
 					if (k.getItemInHand().containsEnchantment(Enchantment.DAMAGE_ALL)) {
 						final int lvl = k.getItemInHand().getEnchantmentLevel(Enchantment.DAMAGE_ALL);
@@ -1158,22 +1158,22 @@ public class Habilidades implements Listener {
 							k.updateInventory();
 							k.playSound(k.getLocation(), Sound.LEVEL_UP, 1.0f, 1.0f);
 							if (lvl + 1 == 2) {
-								k.sendMessage("§aVoc\u00ea agora subiu para o level §f7.");
+								k.sendMessage("ï¿½aVoc\u00ea agora subiu para o level ï¿½f7.");
 							} else if (lvl + 1 == 3) {
-								k.sendMessage("§aVoc\u00ea agora subiu para o level §f8.");
+								k.sendMessage("ï¿½aVoc\u00ea agora subiu para o level ï¿½f8.");
 							} else if (lvl + 1 == 4) {
-								k.sendMessage("§aVoc\u00ea agora subiu para o level §f9.");
+								k.sendMessage("ï¿½aVoc\u00ea agora subiu para o level ï¿½f9.");
 							} else if (lvl + 1 == 5) {
-								k.sendMessage("§aVoc\u00ea agora subiu para o level §f10.");
+								k.sendMessage("ï¿½aVoc\u00ea agora subiu para o level ï¿½f10.");
 							}
 						} else {
 							k.sendMessage(
-									"§a Ops, voc\u00ea acabou atingindo o n\u00edvel m\u00e1ximo! N\u00e3o \u00e9 mais poss\u00edvel upar!");
+									"ï¿½a Ops, voc\u00ea acabou atingindo o n\u00edvel m\u00e1ximo! N\u00e3o \u00e9 mais poss\u00edvel upar!");
 						}
 					} else {
 						k.getItemInHand().addEnchantment(Enchantment.DAMAGE_ALL, 1);
 						k.playSound(k.getLocation(), Sound.LEVEL_UP, 1.0f, 1.0f);
-						k.sendMessage("§aVoc\u00ea agora subiu para o level §f4.");
+						k.sendMessage("ï¿½aVoc\u00ea agora subiu para o level ï¿½f4.");
 					}
 				}
 			}
@@ -1191,7 +1191,7 @@ public class Habilidades implements Listener {
 			Habilidades.noExecut.remove(t);
 			final ItemStack Item = new ItemStack(Material.IRON_FENCE);
 			final ItemMeta kItem = Item.getItemMeta();
-			kItem.setDisplayName("§a" + KitAPI.getkit(p));
+			kItem.setDisplayName("ï¿½a" + KitAPI.getkit(p));
 			Item.setItemMeta(kItem);
 			Habilidades.fighting.remove(t.getName());
 			Habilidades.fighting.remove(p.getName());
@@ -1248,16 +1248,16 @@ public class Habilidades implements Listener {
 			final ItemStack hand = p.getItemInHand();
 			if (hand.getType() == Material.WOOD_AXE) {
 				if (this.cool.contains(p.getName())) {
-					p.sendMessage("§cVoc\u00ea ainda est\u00e1 em cooldown!");
+					p.sendMessage("ï¿½cVoc\u00ea ainda est\u00e1 em cooldown!");
 				} else {
 					final Location loc = p.getTargetBlock(new HashSet<Byte>(), 20).getLocation();
 					p.getWorld().strikeLightning(loc);
 					this.cool.add(p.getName());
-					Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+					Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(WopePvP.plugin, (Runnable) new Runnable() {
 						@Override
 						public void run() {
 							Habilidades.this.cool.remove(p.getName());
-							p.sendMessage("§aJ\u00e1 pode usar novamente!");
+							p.sendMessage("ï¿½aJ\u00e1 pode usar novamente!");
 						}
 					}, 80L);
 				}
@@ -1278,7 +1278,7 @@ public class Habilidades implements Listener {
 			k.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 100, 10));
 			final ItemStack Item = new ItemStack(Material.IRON_FENCE);
 			final ItemMeta kItem = Item.getItemMeta();
-			kItem.setDisplayName("§a" + KitAPI.getkit(p));
+			kItem.setDisplayName("ï¿½a" + KitAPI.getkit(p));
 			Item.setItemMeta(kItem);
 			Habilidades.fighting.remove(k.getName());
 			Habilidades.fighting.remove(p.getName());
@@ -1346,7 +1346,7 @@ public class Habilidades implements Listener {
 		final Player p = e.getPlayer();
 		if (Habilidades.noExecut.contains(p) && !p.hasPermission("tk.admin")) {
 			e.setCancelled(true);
-			p.sendMessage("§cSem comandos em gladiator.");
+			p.sendMessage("ï¿½cSem comandos em gladiator.");
 		}
 	}
 }

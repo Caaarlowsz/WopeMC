@@ -23,7 +23,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 
-import tk.imperialz.Main;
+import com.github.caaarlowsz.wopemc.kitpvp.WopePvP;
 import tk.imperialz.apis.KitAPI;
 import tk.imperialz.warps.WarpsAPI;
 import tk.imperialz.x1.Join1v1;
@@ -53,16 +53,16 @@ public class Events1v1 implements Listener {
 		}
 		if (p.getItemInHand().equals((Object) Join1v1.Item_)) {
 			if (Events1v1.ChamouDuelo.contains(p)) {
-				p.sendMessage("§cAguarde para convidar outra pessoa.");
+				p.sendMessage("ï¿½cAguarde para convidar outra pessoa.");
 				return;
 			}
 			final Player Player2 = (Player) event.getRightClicked();
 			Events1v1.AceitarDuelo.add(Player2);
 			Events1v1.ChamouDuelo.add(p);
-			p.sendMessage("§6§l1V1 §fVoc\u00ea convidou o jogador §b" + Player2.getName() + " §fpara uma batalha 1v1.");
+			p.sendMessage("ï¿½6ï¿½l1V1 ï¿½fVoc\u00ea convidou o jogador ï¿½b" + Player2.getName() + " ï¿½fpara uma batalha 1v1.");
 			Player2.sendMessage(
-					"§6§l1V1 §fVoc\u00ea foi convidado pelo jogador §b" + p.getName() + " §fpara uma batalha 1v1");
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+					"ï¿½6ï¿½l1V1 ï¿½fVoc\u00ea foi convidado pelo jogador ï¿½b" + p.getName() + " ï¿½fpara uma batalha 1v1");
+			Bukkit.getScheduler().scheduleSyncDelayedTask(WopePvP.plugin, (Runnable) new Runnable() {
 				@Override
 				public void run() {
 					if (Events1v1.ChamouDuelo.contains(p)) {
@@ -102,7 +102,7 @@ public class Events1v1 implements Listener {
 				final ItemStack Espada = new ItemStack(Material.DIAMOND_SWORD);
 				Espada.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 1);
 				final ItemMeta Espada2 = Espada.getItemMeta();
-				Espada2.setDisplayName("§eEspada");
+				Espada2.setDisplayName("ï¿½eEspada");
 				Espada.setItemMeta(Espada2);
 				p.getInventory().addItem(new ItemStack[] { Espada });
 				Player2.getInventory().addItem(new ItemStack[] { Espada });
@@ -128,7 +128,7 @@ public class Events1v1 implements Listener {
 						Speed1v1.Iniciou.remove(Player2);
 						Speed1v1.Partida1 = false;
 					}
-					Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), (Runnable) new Runnable() {
+					Bukkit.getScheduler().scheduleSyncDelayedTask(WopePvP.getPlugin(), (Runnable) new Runnable() {
 						@Override
 						public void run() {
 							Player[] onlinePlayers;
@@ -142,7 +142,7 @@ public class Events1v1 implements Listener {
 							}
 						}
 					}, 2L);
-					Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+					Bukkit.getScheduler().scheduleSyncDelayedTask(WopePvP.plugin, (Runnable) new Runnable() {
 						@Override
 						public void run() {
 							p.setMaxHealth(20);
@@ -176,13 +176,13 @@ public class Events1v1 implements Listener {
 				Events1v1.inPvP.remove(m);
 				Events1v1.inPvP.remove(v);
 				m.sendMessage("     ");
-				m.sendMessage("§6§l1V1 §fVoc\u00ea ganhou de jogador §b" + v.getName() + " §fe ele ficou com §c"
-						+ amountv + " §fsopas.");
+				m.sendMessage("ï¿½6ï¿½l1V1 ï¿½fVoc\u00ea ganhou de jogador ï¿½b" + v.getName() + " ï¿½fe ele ficou com ï¿½c"
+						+ amountv + " ï¿½fsopas.");
 				KitAPI.RemoveKit(m);
 				KitAPI.RemoveKit(v);
 				v.sendMessage("     ");
-				v.sendMessage("§6§l1V1 §fVoc\u00ea perdeu para o jogador §b" + m.getName() + " §fe ele ficou com §c"
-						+ amountm + " §fsopas.");
+				v.sendMessage("ï¿½6ï¿½l1V1 ï¿½fVoc\u00ea perdeu para o jogador ï¿½b" + m.getName() + " ï¿½fe ele ficou com ï¿½c"
+						+ amountm + " ï¿½fsopas.");
 				WarpsAPI.Ir(m, "1v1");
 				m.setGameMode(GameMode.SURVIVAL);
 				m.getInventory().setArmorContents((ItemStack[]) null);
@@ -190,7 +190,7 @@ public class Events1v1 implements Listener {
 				for (final PotionEffect effect : m.getActivePotionEffects()) {
 					m.removePotionEffect(effect.getType());
 				}
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), (Runnable) new Runnable() {
+				Bukkit.getScheduler().scheduleSyncDelayedTask(WopePvP.getPlugin(), (Runnable) new Runnable() {
 					@Override
 					public void run() {
 						WarpsAPI.Ir(v, "1v1");
@@ -208,7 +208,7 @@ public class Events1v1 implements Listener {
 				Events1v1.Jogando1v1Player.remove(m);
 				Events1v1.JogandoSair.remove(m.getName());
 				Events1v1.JogandoSair.remove(v.getName());
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), (Runnable) new Runnable() {
+				Bukkit.getScheduler().scheduleSyncDelayedTask(WopePvP.getPlugin(), (Runnable) new Runnable() {
 					@Override
 					public void run() {
 						v.getInventory().setItem(3, Join1v1.Item_);
@@ -251,15 +251,15 @@ public class Events1v1 implements Listener {
 				final int amountm = this.itemsInInventory((Inventory) m.getInventory(),
 						new Material[] { Material.MUSHROOM_SOUP });
 				m.sendMessage("     ");
-				m.sendMessage("§6§l1V1 §fVoc\u00ea ganhou de jogador §b" + v.getName() + " §fe ele ficou com §c"
-						+ amountv + " §fsopas.");
+				m.sendMessage("ï¿½6ï¿½l1V1 ï¿½fVoc\u00ea ganhou de jogador ï¿½b" + v.getName() + " ï¿½fe ele ficou com ï¿½c"
+						+ amountv + " ï¿½fsopas.");
 				Events1v1.inPvP.remove(m);
 				Events1v1.inPvP.remove(v);
 				KitAPI.setKit(v, "Nenhum");
 				KitAPI.setKit(m, "Nenhum");
 				v.sendMessage("     ");
-				v.sendMessage("§6§l1V1 §fVoc\u00ea perdeu para o jogador §b" + m.getName() + " §fe ele ficou com §c"
-						+ amountm + " §fsopas.");
+				v.sendMessage("ï¿½6ï¿½l1V1 ï¿½fVoc\u00ea perdeu para o jogador ï¿½b" + m.getName() + " ï¿½fe ele ficou com ï¿½c"
+						+ amountm + " ï¿½fsopas.");
 				WarpsAPI.Ir(m, "1v1");
 				m.setGameMode(GameMode.SURVIVAL);
 				m.getInventory().setArmorContents((ItemStack[]) null);
@@ -268,7 +268,7 @@ public class Events1v1 implements Listener {
 				for (final PotionEffect effect : m.getActivePotionEffects()) {
 					m.removePotionEffect(effect.getType());
 				}
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), (Runnable) new Runnable() {
+				Bukkit.getScheduler().scheduleSyncDelayedTask(WopePvP.getPlugin(), (Runnable) new Runnable() {
 					@Override
 					public void run() {
 						WarpsAPI.Ir(v, "1v1");
@@ -284,7 +284,7 @@ public class Events1v1 implements Listener {
 				Events1v1.Jogando1v1Player.remove(m);
 				Events1v1.JogandoSair.remove(m.getName());
 				Events1v1.JogandoSair.remove(v.getName());
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), (Runnable) new Runnable() {
+				Bukkit.getScheduler().scheduleSyncDelayedTask(WopePvP.getPlugin(), (Runnable) new Runnable() {
 					@Override
 					public void run() {
 						v.getInventory().setItem(3, Join1v1.Item_);
@@ -331,7 +331,7 @@ public class Events1v1 implements Listener {
 			for (final PotionEffect effect : t.getActivePotionEffects()) {
 				t.removePotionEffect(effect.getType());
 			}
-			t.sendMessage("§6§l1V1: §fO jogador §b" + p.getName() + " §fdeslogou no 1v1.");
+			t.sendMessage("ï¿½6ï¿½l1V1: ï¿½fO jogador ï¿½b" + p.getName() + " ï¿½fdeslogou no 1v1.");
 			t.getInventory().setItem(3, Join1v1.Item_);
 			t.getInventory().setItem(5, Join1v1.Cinza);
 			t.updateInventory();
@@ -348,7 +348,7 @@ public class Events1v1 implements Listener {
 	public void cmda(final PlayerCommandPreprocessEvent event) {
 		final Player p = event.getPlayer();
 		if (Events1v1.Jogando1v1Player.contains(p)) {
-			event.getPlayer().sendMessage("§cSem comandos em batalha.");
+			event.getPlayer().sendMessage("ï¿½cSem comandos em batalha.");
 			event.setCancelled(true);
 		}
 	}

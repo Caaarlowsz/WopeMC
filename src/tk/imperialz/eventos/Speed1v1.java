@@ -12,7 +12,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
-import tk.imperialz.Main;
+import com.github.caaarlowsz.wopemc.kitpvp.WopePvP;
 import tk.imperialz.x1.Join1v1;
 
 public class Speed1v1 implements Listener {
@@ -47,16 +47,16 @@ public class Speed1v1 implements Listener {
 				Speed1v1.Nome = p.getName();
 				Speed1v1.Partida1 = true;
 				p.getInventory().removeItem(new ItemStack[] { Join1v1.Cinza });
-				p.sendMessage("§aVoc\u00ea entrou na fila de 1v1 r\u00e1pido.");
+				p.sendMessage("ï¿½aVoc\u00ea entrou na fila de 1v1 r\u00e1pido.");
 				Speed1v1.Iniciou.add(p);
 				this.Trocar(p);
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+				Bukkit.getScheduler().scheduleSyncDelayedTask(WopePvP.plugin, (Runnable) new Runnable() {
 					@Override
 					public void run() {
 						Speed1v1.SECONDS.add(p);
 					}
 				}, 2L);
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+				Bukkit.getScheduler().scheduleSyncDelayedTask(WopePvP.plugin, (Runnable) new Runnable() {
 					@Override
 					public void run() {
 						if (Speed1v1.SECONDS.contains(p)) {
@@ -69,7 +69,7 @@ public class Speed1v1 implements Listener {
 							p.getInventory().removeItem(new ItemStack[] { Join1v1.Verde3 });
 							if (!Events1v1.inPvP.contains(p)) {
 								p.updateInventory();
-								p.sendMessage("§cNenhuma partida foi encontrada.");
+								p.sendMessage("ï¿½cNenhuma partida foi encontrada.");
 								p.getInventory().setItem(5, Join1v1.Cinza);
 							}
 						}
@@ -93,7 +93,7 @@ public class Speed1v1 implements Listener {
 				|| p.getItemInHand().equals((Object) Join1v1.Verde3))
 				&& (event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR)
 				&& Speed1v1.SECONDS.contains(p)) {
-			p.sendMessage("§cVoc\u00ea j\u00e1 est\u00e1 na fila.");
+			p.sendMessage("ï¿½cVoc\u00ea j\u00e1 est\u00e1 na fila.");
 		}
 	}
 }

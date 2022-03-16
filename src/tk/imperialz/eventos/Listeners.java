@@ -31,7 +31,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import tk.imperialz.Main;
+import com.github.caaarlowsz.wopemc.kitpvp.WopePvP;
 import tk.imperialz.apis.KitAPI;
 import tk.imperialz.apis.WarpsMenu;
 import tk.imperialz.gamer.DataManager;
@@ -54,7 +54,7 @@ public class Listeners implements Listener {
 			public void run() {
 				e.getEntity().spigot().respawn();
 			}
-		}.runTask(Main.getPlugin());
+		}.runTask(WopePvP.getPlugin());
 	}
 
 	public void flecha(final ProjectileHitEvent e) {
@@ -79,7 +79,7 @@ public class Listeners implements Listener {
 		final Player v = e.getEntity();
 		e.setDeathMessage((String) null);
 		if (!(e.getEntity().getKiller() instanceof Player) && KitAPI.getkit(v) == "Challenge") {
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), (Runnable) new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(WopePvP.getPlugin(), (Runnable) new Runnable() {
 				@Override
 				public void run() {
 					WarpsAPI.Ir(v, "Challenge");
@@ -91,15 +91,15 @@ public class Listeners implements Listener {
 				}
 			}, 1L);
 			KitAPI.RemoveKit(v);
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), (Runnable) new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(WopePvP.getPlugin(), (Runnable) new Runnable() {
 				@Override
 				public void run() {
 					KitAPI.DarSopa(v);
 					v.updateInventory();
 					WarpsAPI.Ir(v, "Challenge");
 					KitAPI.setKit(v, "Challenge");
-					v.sendMessage("§c§lDEATH §fVoc\u00ea §c§lMORREU§f na warp challenge.");
-					v.sendMessage("§c§lDEATH §fSeus §a§lSTATUS§f n\u00e3o ser\u00e3o afetados!");
+					v.sendMessage("ï¿½cï¿½lDEATH ï¿½fVoc\u00ea ï¿½cï¿½lMORREUï¿½f na warp challenge.");
+					v.sendMessage("ï¿½cï¿½lDEATH ï¿½fSeus ï¿½aï¿½lSTATUSï¿½f n\u00e3o ser\u00e3o afetados!");
 				}
 			}, 2L);
 			((Damageable) v).setHealth(20.0);
@@ -111,7 +111,7 @@ public class Listeners implements Listener {
 		final Player v = e.getEntity();
 		e.setDeathMessage((String) null);
 		if (e.getEntity().getKiller() instanceof Player && KitAPI.getkit(v) == "Evento") {
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), (Runnable) new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(WopePvP.getPlugin(), (Runnable) new Runnable() {
 				@Override
 				public void run() {
 					WarpsAPI.Ir(v, "Evento");
@@ -123,7 +123,7 @@ public class Listeners implements Listener {
 				}
 			}, 1L);
 			KitAPI.RemoveKit(v);
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), (Runnable) new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(WopePvP.getPlugin(), (Runnable) new Runnable() {
 				@Override
 				public void run() {
 					KitAPI.DarSopa(v);
@@ -141,7 +141,7 @@ public class Listeners implements Listener {
 		final Player v = e.getEntity();
 		e.setDeathMessage((String) null);
 		if (e.getEntity().getKiller() instanceof Player && KitAPI.getkit(v) == "Fps") {
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), (Runnable) new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(WopePvP.getPlugin(), (Runnable) new Runnable() {
 				@Override
 				public void run() {
 					WarpsAPI.Ir(v, "Fps");
@@ -153,7 +153,7 @@ public class Listeners implements Listener {
 				}
 			}, 1L);
 			KitAPI.RemoveKit(v);
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), (Runnable) new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(WopePvP.getPlugin(), (Runnable) new Runnable() {
 				@Override
 				public void run() {
 					KitAPI.DarSopa(v);
@@ -169,7 +169,7 @@ public class Listeners implements Listener {
 	@EventHandler
 	public void onMe(final PlayerCommandPreprocessEvent e) {
 		if (e.getMessage().toLowerCase().startsWith("/me")) {
-			e.getPlayer().sendMessage(Main.perma);
+			e.getPlayer().sendMessage(WopePvP.perma);
 			e.setCancelled(true);
 		}
 	}
@@ -190,7 +190,7 @@ public class Listeners implements Listener {
 				public void run() {
 					WarpsAPI.Ir(p, "Spawn");
 				}
-			}.runTaskLater((Plugin) Main.getPlugin(Main.class), 15L);
+			}.runTaskLater((Plugin) WopePvP.getPlugin(WopePvP.class), 15L);
 		}
 	}
 
@@ -222,10 +222,10 @@ public class Listeners implements Listener {
 			final Player k = e.getEntity().getKiller();
 			final PlayerData dataKiller = DataManager.getPlayerData(k);
 			final PlayerData data = DataManager.getPlayerData(d);
-			k.sendMessage("§a§lKILL §fVoc\u00ea matou: §a§l" + d.getName());
+			k.sendMessage("ï¿½aï¿½lKILL ï¿½fVoc\u00ea matou: ï¿½aï¿½l" + d.getName());
 			k.playSound(k.getLocation(), Sound.ANVIL_LAND, 1.0f, 1.0f);
 			com.extremepvp.Main.getInstance().getRankManager().killReward(k);
-			d.sendMessage("§c§lDEATH §fVoc\u00ea foi morto por §c§l" + k.getName());
+			d.sendMessage("ï¿½cï¿½lDEATH ï¿½fVoc\u00ea foi morto por ï¿½cï¿½l" + k.getName());
 			d.playSound(d.getLocation(), Sound.PIG_DEATH, 1.0f, 1.0f);
 			dataKiller.setKills(dataKiller.getKills() + 1);
 			dataKiller.setStreak(dataKiller.getStreak() + 1);
@@ -237,40 +237,40 @@ public class Listeners implements Listener {
 			}
 			if (dataKiller.getStreak() == 10) {
 				Bukkit.broadcastMessage(
-						"§c§lKILLSTREAK §e" + k.getName() + "§f alcan\u00e7ou um §4§lKILLSTREAK§f de §a§l10");
+						"ï¿½cï¿½lKILLSTREAK ï¿½e" + k.getName() + "ï¿½f alcan\u00e7ou um ï¿½4ï¿½lKILLSTREAKï¿½f de ï¿½aï¿½l10");
 			} else if (dataKiller.getStreak() == 15) {
 				Bukkit.broadcastMessage(
-						"§c§lKILLSTREAK §e" + k.getName() + "§f alcan\u00e7ou um §4§lKILLSTREAK§f de §a§l15");
+						"ï¿½cï¿½lKILLSTREAK ï¿½e" + k.getName() + "ï¿½f alcan\u00e7ou um ï¿½4ï¿½lKILLSTREAKï¿½f de ï¿½aï¿½l15");
 			} else if (dataKiller.getStreak() == 20) {
 				Bukkit.broadcastMessage(
-						"§c§lKILLSTREAK §e" + k.getName() + "§f alcan\u00e7ou um §4§lKILLSTREAK§f de §a§l20");
+						"ï¿½cï¿½lKILLSTREAK ï¿½e" + k.getName() + "ï¿½f alcan\u00e7ou um ï¿½4ï¿½lKILLSTREAKï¿½f de ï¿½aï¿½l20");
 			} else if (dataKiller.getStreak() == 25) {
 				Bukkit.broadcastMessage(
-						"§c§lKILLSTREAK §e" + k.getName() + "§f alcan\u00e7ou um §4§lKILLSTREAK§f de §a§l25");
+						"ï¿½cï¿½lKILLSTREAK ï¿½e" + k.getName() + "ï¿½f alcan\u00e7ou um ï¿½4ï¿½lKILLSTREAKï¿½f de ï¿½aï¿½l25");
 			} else if (dataKiller.getStreak() == 30) {
 				Bukkit.broadcastMessage(
-						"§c§lKILLSTREAK §e" + k.getName() + "§f alcan\u00e7ou um §4§lKILLSTREAK§f de §a§l30");
+						"ï¿½cï¿½lKILLSTREAK ï¿½e" + k.getName() + "ï¿½f alcan\u00e7ou um ï¿½4ï¿½lKILLSTREAKï¿½f de ï¿½aï¿½l30");
 			} else if (dataKiller.getStreak() == 35) {
 				Bukkit.broadcastMessage(
-						"§c§lKILLSTREAK §e" + k.getName() + "§f alcan\u00e7ou um §4§lKILLSTREAK§f de §a§l35");
+						"ï¿½cï¿½lKILLSTREAK ï¿½e" + k.getName() + "ï¿½f alcan\u00e7ou um ï¿½4ï¿½lKILLSTREAKï¿½f de ï¿½aï¿½l35");
 			} else if (dataKiller.getStreak() == 40) {
 				Bukkit.broadcastMessage(
-						"§c§lKILLSTREAK §e" + k.getName() + "§f alcan\u00e7ou um §4§lKILLSTREAK§f de §a§l40");
+						"ï¿½cï¿½lKILLSTREAK ï¿½e" + k.getName() + "ï¿½f alcan\u00e7ou um ï¿½4ï¿½lKILLSTREAKï¿½f de ï¿½aï¿½l40");
 			} else if (dataKiller.getStreak() == 45) {
 				Bukkit.broadcastMessage(
-						"§c§lKILLSTREAK §e" + k.getName() + "§f alcan\u00e7ou um §4§lKILLSTREAK§f de §a§l45");
+						"ï¿½cï¿½lKILLSTREAK ï¿½e" + k.getName() + "ï¿½f alcan\u00e7ou um ï¿½4ï¿½lKILLSTREAKï¿½f de ï¿½aï¿½l45");
 			} else if (dataKiller.getStreak() == 50) {
 				Bukkit.broadcastMessage(
-						"§c§lKILLSTREAK §e" + k.getName() + "§f alcan\u00e7ou um §4§lKILLSTREAK§f de §a§l50");
+						"ï¿½cï¿½lKILLSTREAK ï¿½e" + k.getName() + "ï¿½f alcan\u00e7ou um ï¿½4ï¿½lKILLSTREAKï¿½f de ï¿½aï¿½l50");
 			} else if (dataKiller.getStreak() == 55) {
 				Bukkit.broadcastMessage(
-						"§c§lKILLSTREAK §e" + k.getName() + "§f alcan\u00e7ou um §4§lKILLSTREAK§f de §a§l55");
+						"ï¿½cï¿½lKILLSTREAK ï¿½e" + k.getName() + "ï¿½f alcan\u00e7ou um ï¿½4ï¿½lKILLSTREAKï¿½f de ï¿½aï¿½l55");
 			} else if (dataKiller.getStreak() == 60) {
 				Bukkit.broadcastMessage(
-						"§c§lKILLSTREAK §e" + k.getName() + "§f alcan\u00e7ou um §4§lKILLSTREAK§f de §a§l60");
+						"ï¿½cï¿½lKILLSTREAK ï¿½e" + k.getName() + "ï¿½f alcan\u00e7ou um ï¿½4ï¿½lKILLSTREAKï¿½f de ï¿½aï¿½l60");
 			} else if (dataKiller.getStreak() == 65) {
 				Bukkit.broadcastMessage(
-						"§c§lKILLSTREAK §e" + k.getName() + "§f alcan\u00e7ou um §4§lKILLSTREAK§f de §a§l65");
+						"ï¿½cï¿½lKILLSTREAK ï¿½e" + k.getName() + "ï¿½f alcan\u00e7ou um ï¿½4ï¿½lKILLSTREAKï¿½f de ï¿½aï¿½l65");
 			}
 		}
 	}
@@ -332,7 +332,7 @@ public class Listeners implements Listener {
 
 	@EventHandler
 	public void onItemDrop(final ItemSpawnEvent e) {
-		Bukkit.getServer().getScheduler().scheduleSyncDelayedTask((Plugin) Main.getInstance(),
+		Bukkit.getServer().getScheduler().scheduleSyncDelayedTask((Plugin) WopePvP.getInstance(),
 				(Runnable) new Runnable() {
 					@Override
 					public void run() {

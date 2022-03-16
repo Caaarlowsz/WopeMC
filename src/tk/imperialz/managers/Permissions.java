@@ -5,12 +5,12 @@ import org.bukkit.entity.Player;
 
 import com.extremepvp.permissions.enums.Group;
 
-import tk.imperialz.Main;
+import com.github.caaarlowsz.wopemc.kitpvp.WopePvP;
 
 public class Permissions {
-	public Main m;
+	public WopePvP m;
 
-	public Permissions(final Main m) {
+	public Permissions(final WopePvP m) {
 		this.m = m;
 	}
 

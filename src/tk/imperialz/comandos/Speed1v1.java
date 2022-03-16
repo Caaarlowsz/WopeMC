@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import tk.imperialz.Main;
+import com.github.caaarlowsz.wopemc.kitpvp.WopePvP;
 import tk.imperialz.apis.KitAPI;
 import tk.imperialz.eventos.Events1v1;
 import tk.imperialz.warps.WarpsAPI;
@@ -46,7 +46,7 @@ public class Speed1v1 implements CommandExecutor {
 					final ItemStack Espada = new ItemStack(Material.DIAMOND_SWORD);
 					Espada.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 1);
 					final ItemMeta Espada2 = Espada.getItemMeta();
-					Espada2.setDisplayName("§eEspada");
+					Espada2.setDisplayName("ï¿½eEspada");
 					Espada.setItemMeta(Espada2);
 					p.getInventory().addItem(new ItemStack[] { Espada });
 					Player2.getInventory().addItem(new ItemStack[] { Espada });
@@ -74,7 +74,7 @@ public class Speed1v1 implements CommandExecutor {
 							tk.imperialz.eventos.Speed1v1.Iniciou.remove(Player2);
 							tk.imperialz.eventos.Speed1v1.Partida1 = false;
 						}
-						Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), (Runnable) new Runnable() {
+						Bukkit.getScheduler().scheduleSyncDelayedTask(WopePvP.getPlugin(), (Runnable) new Runnable() {
 							@Override
 							public void run() {
 								Player[] onlinePlayers;
@@ -88,7 +88,7 @@ public class Speed1v1 implements CommandExecutor {
 								}
 							}
 						}, 2L);
-						Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+						Bukkit.getScheduler().scheduleSyncDelayedTask(WopePvP.plugin, (Runnable) new Runnable() {
 							@Override
 							public void run() {
 								p.setMaxHealth(20);
@@ -97,7 +97,7 @@ public class Speed1v1 implements CommandExecutor {
 								Player2.setHealth(20);
 							}
 						}, 20L);
-						Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+						Bukkit.getScheduler().scheduleSyncDelayedTask(WopePvP.plugin, (Runnable) new Runnable() {
 							@Override
 							public void run() {
 								p.setMaxHealth(20);
@@ -106,7 +106,7 @@ public class Speed1v1 implements CommandExecutor {
 								Player2.setHealth(20);
 							}
 						}, 40L);
-						Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+						Bukkit.getScheduler().scheduleSyncDelayedTask(WopePvP.plugin, (Runnable) new Runnable() {
 							@Override
 							public void run() {
 								p.setMaxHealth(20);

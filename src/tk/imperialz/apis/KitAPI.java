@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 
-import tk.imperialz.Main;
+import com.github.caaarlowsz.wopemc.kitpvp.WopePvP;
 import tk.imperialz.comandos.Build;
 import tk.imperialz.warps.WarpsAPI;
 
@@ -62,25 +62,25 @@ public class KitAPI implements Listener {
 	public static void DarSopa(final Player p) {
 		p.getInventory().clear();
 		p.getInventory().setItem(0,
-				APITag.criarItem(p, Material.STONE_SWORD, ChatColor.YELLOW + "§lEspada", new String[1], 1, (short) 0));
-		p.getInventory().setItem(15, APITag.criarItem(p, Material.BROWN_MUSHROOM, ChatColor.YELLOW + "§lCogumelo",
+				APITag.criarItem(p, Material.STONE_SWORD, ChatColor.YELLOW + "ï¿½lEspada", new String[1], 1, (short) 0));
+		p.getInventory().setItem(15, APITag.criarItem(p, Material.BROWN_MUSHROOM, ChatColor.YELLOW + "ï¿½lCogumelo",
 				new String[1], 64, (short) 0));
 		p.getInventory().setItem(14,
-				APITag.criarItem(p, Material.RED_MUSHROOM, ChatColor.RED + "§lCogumelo", new String[1], 64, (short) 0));
+				APITag.criarItem(p, Material.RED_MUSHROOM, ChatColor.RED + "ï¿½lCogumelo", new String[1], 64, (short) 0));
 		p.getInventory().setItem(13,
 				APITag.criarItem(p, Material.BOWL, ChatColor.GRAY + "Pote", new String[1], 64, (short) 0));
 		for (int i = 1; i < 35; ++i) {
 			p.getInventory().addItem(new ItemStack[] { APITag.criarItem(p, Material.MUSHROOM_SOUP,
-					ChatColor.GREEN + "§lSopa", new String[1], 1, (short) 0) });
+					ChatColor.GREEN + "ï¿½lSopa", new String[1], 1, (short) 0) });
 		}
 		TeletransportarJogador(p);
 	}
 
 	public static void darItens(final Player p) {
 		p.getInventory().clear();
-		p.getInventory().setItem(5, APITag.criarItem(p, Material.CHEST, ChatColor.DARK_PURPLE + "Kits §7(Clique)",
+		p.getInventory().setItem(5, APITag.criarItem(p, Material.CHEST, ChatColor.DARK_PURPLE + "Kits ï¿½7(Clique)",
 				new String[1], 1, (short) 0));
-		p.getInventory().setItem(3, APITag.criarItem(p, Material.BOOK, ChatColor.DARK_PURPLE + "Warps §7(Clique)",
+		p.getInventory().setItem(3, APITag.criarItem(p, Material.BOOK, ChatColor.DARK_PURPLE + "Warps ï¿½7(Clique)",
 				new String[1], 1, (short) 0));
 		RemoveKit(p);
 		Build.Build.put(p.getName(), Build.BuildStats.OFF);
@@ -96,7 +96,7 @@ public class KitAPI implements Listener {
 		final long cooldownLength = System.currentTimeMillis() + seconds * 1000;
 		KitAPI.run.remove(p);
 		KitAPI.run.put(p, cooldownLength);
-		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, (Runnable) new Runnable() {
+		Bukkit.getScheduler().scheduleSyncDelayedTask(WopePvP.plugin, (Runnable) new Runnable() {
 			@Override
 			public void run() {
 				KitAPI.run.remove(p);

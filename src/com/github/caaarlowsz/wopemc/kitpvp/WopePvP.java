@@ -1,5 +1,7 @@
-package tk.imperialz;
+package com.github.caaarlowsz.wopemc.kitpvp;
 
+import com.github.caaarlowsz.kitpvpapi.KitPvP;
+import com.github.caaarlowsz.kitpvpapi.KitPvPAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -21,33 +23,52 @@ import tk.imperialz.mysql.MySQLFunctions;
 import tk.imperialz.scoreboard.Scoreboarde;
 import tk.imperialz.warps.WarpsConfig;
 
-public class Main extends JavaPlugin {
+public class WopePvP extends JavaPlugin implements KitPvP {
+
+	@Override
+	public void onEnable() {
+		super.onEnable();
+		KitPvPAPI.setInstance(this);
+
+		// TODO: Remover quando melhorar a classe principal
+		this.enable();
+	}
+
+	@Override
+	public void onDisable() {
+		super.onDisable();
+		KitPvPAPI.setInstance(null);
+
+		// TODO: Remover quando melhorar a classe principal
+		this.disable();
+	}
+
 	private CombatLogManager combatLog;
 	public static String perma;
 	public static Plugin plugin;
-	public static Main instancea;
+	public static WopePvP instancea;
 	public static MySQL mysql;
 	public Permissions perm;
 	public ReflectionManager rm;
 
 	static {
-		Main.perma = ChatColor.RED + "Voce n\u00e3o possui permiss\u00e3o para usar esse comando.";
+		WopePvP.perma = ChatColor.RED + "Voce n\u00e3o possui permiss\u00e3o para usar esse comando.";
 	}
 
 	public static Plugin getPlugin() {
-		return Main.plugin;
+		return WopePvP.plugin;
 	}
 
-	public static Main getInstance() {
-		return Main.instancea;
+	public static WopePvP getInstance() {
+		return WopePvP.instancea;
 	}
 
-	public void onEnable() {
-		Main.plugin = (Plugin) this;
-		Main.instancea = this;
+	public void enable() {
+		WopePvP.plugin = this;
+		WopePvP.instancea = this;
 		this.rm = new ReflectionManager();
 		this.combatLog = new CombatLogManager();
-		Bukkit.getMessenger().registerOutgoingPluginChannel((Plugin) this, "BungeeCord");
+		Bukkit.getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 		this.loadMySQL();
 		this.loadListeners();
 		this.saveStatus();
@@ -59,27 +80,27 @@ public class Main extends JavaPlugin {
 		new CommandManager(this);
 		ListenerManager.loadListener();
 		ListenerManager.loadKits();
-		Bukkit.getPluginManager().registerEvents((Listener) new Placa(this), (Plugin) this);
-		Bukkit.getPluginManager().registerEvents((Listener) new CombatLogListener(this.combatLog), (Plugin) this);
-		Bukkit.getPluginManager().registerEvents((Listener) new eListeners(this), (Plugin) this);
-		WarpsConfig.getConfig().ConfigEnable((Plugin) this);
+		Bukkit.getPluginManager().registerEvents(new Placa(this), this);
+		Bukkit.getPluginManager().registerEvents(new CombatLogListener(this.combatLog), this);
+		Bukkit.getPluginManager().registerEvents(new eListeners(this), this);
+		WarpsConfig.getConfig().ConfigEnable(this);
 		Scoreboarde.run();
 	}
 
 	private void loadMySQL() {
-		Main.mysql = new MySQL("localhost", "test", "root", "");
+		WopePvP.mysql = new MySQL("localhost", "test", "root", "");
 		MySQLFunctions.CriarTabela();
 	}
 
 	private void saveStatus() {
-		Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.plugin, (Runnable) new Runnable() {
+		Bukkit.getScheduler().scheduleSyncRepeatingTask(WopePvP.plugin, new Runnable() {
 			@Override
 			public void run() {
 				Player[] onlinePlayers;
 				for (int length = (onlinePlayers = Bukkit.getOnlinePlayers()).length, i = 0; i < length; ++i) {
 					final Player player = onlinePlayers[i];
 					if (player.hasPermission("tk.admin")) {
-						player.sendMessage("§9§lDADOS §fSalvando as informa\u00e7\u00f5es de todos os jogadores...");
+						player.sendMessage("ï¿½9ï¿½lDADOS ï¿½fSalvando as informa\u00e7\u00f5es de todos os jogadores...");
 					}
 				}
 				new Thread() {
@@ -103,7 +124,7 @@ public class Main extends JavaPlugin {
 									final Player player2 = onlinePlayers2[k];
 									if (player2.hasPermission("tk.admin")) {
 										player2.sendMessage(
-												"§4§lRESULTADO §fOs dados foram salvos com sucesso e nenhum erro foi encontrado!");
+												"ï¿½4ï¿½lRESULTADO ï¿½fOs dados foram salvos com sucesso e nenhum erro foi encontrado!");
 									}
 								}
 							}
@@ -115,7 +136,7 @@ public class Main extends JavaPlugin {
 		}, 0L, 6000L);
 	}
 
-	public void onDisable() {
+	public void disable() {
 		Bukkit.getScheduler().cancelAllTasks();
 		MySQL.disconnect();
 	}

@@ -7,7 +7,7 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import tk.imperialz.Main;
+import com.github.caaarlowsz.wopemc.kitpvp.WopePvP;
 import tk.imperialz.gamer.DataManager;
 import tk.imperialz.gamer.PlayerData;
 
@@ -42,7 +42,7 @@ public class MySQLFunctions {
 	}
 
 	public static void savePlayer(final Player p) {
-		Bukkit.getScheduler().runTaskAsynchronously(Main.plugin, () -> {
+		Bukkit.getScheduler().runTaskAsynchronously(WopePvP.plugin, () -> {
 			try {
 				PlayerData data = DataManager.getPlayerData(p);
 				data.update();

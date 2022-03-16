@@ -8,13 +8,13 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import tk.imperialz.Main;
+import com.github.caaarlowsz.wopemc.kitpvp.WopePvP;
 
 public class Limpar implements CommandExecutor {
 	public static List<String> registered;
-	public Main m;
+	public WopePvP m;
 
-	public Limpar(final Main m) {
+	public Limpar(final WopePvP m) {
 		this.m = m;
 	}
 
@@ -22,10 +22,10 @@ public class Limpar implements CommandExecutor {
 		final Player p = (Player) Sender;
 		if (Cmd.getName().equalsIgnoreCase("limpar")) {
 			if (!this.m.perm.isTrial(p)) {
-				p.sendMessage(Main.perma);
+				p.sendMessage(WopePvP.perma);
 				return true;
 			}
-			Bukkit.broadcastMessage("§fExecutando limpeza do servidor. O servidor pode travar, mas voltar\u00e1!");
+			Bukkit.broadcastMessage("ï¿½fExecutando limpeza do servidor. O servidor pode travar, mas voltar\u00e1!");
 			final Runtime r2 = Runtime.getRuntime();
 			final long Lused2 = (r2.totalMemory() - r2.freeMemory()) / 1024L / 1024L;
 			System.gc();
@@ -34,10 +34,10 @@ public class Limpar implements CommandExecutor {
 			for (int length = (onlinePlayers = Bukkit.getOnlinePlayers()).length, i = 0; i < length; ++i) {
 				final Player s = onlinePlayers[i];
 				if (!this.m.perm.isTrial(s)) {
-					s.sendMessage("§aForam removidos §e" + Long.toString(Lused2 - Lused3) + "M §aRAM do servidor");
+					s.sendMessage("ï¿½aForam removidos ï¿½e" + Long.toString(Lused2 - Lused3) + "M ï¿½aRAM do servidor");
 				}
 			}
-			Bukkit.broadcastMessage("§b§lLIMPEZA §fA limpeza foi concluida.");
+			Bukkit.broadcastMessage("ï¿½bï¿½lLIMPEZA ï¿½fA limpeza foi concluida.");
 		}
 		return false;
 	}

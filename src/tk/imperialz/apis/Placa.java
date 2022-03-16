@@ -15,12 +15,12 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import tk.imperialz.Main;
+import com.github.caaarlowsz.wopemc.kitpvp.WopePvP;
 
 public class Placa implements Listener {
-	public Main m;
+	public WopePvP m;
 
-	public Placa(final Main m) {
+	public Placa(final WopePvP m) {
 		this.m = m;
 	}
 
@@ -41,16 +41,16 @@ public class Placa implements Listener {
 	public void SignClickEvent(final PlayerInteractEvent e) {
 		final ItemStack sopa = new ItemStack(Material.MUSHROOM_SOUP);
 		final ItemMeta sopas = sopa.getItemMeta();
-		sopas.setDisplayName("§aSopa");
+		sopas.setDisplayName("ï¿½aSopa");
 		sopa.setItemMeta(sopas);
 		if (e.getAction() == Action.RIGHT_CLICK_BLOCK && (e.getClickedBlock().getType() == Material.SIGN
 				|| e.getClickedBlock().getType() == Material.SIGN_POST
 				|| e.getClickedBlock().getType() == Material.WALL_SIGN)) {
 			final Sign sign = (Sign) e.getClickedBlock().getState();
-			if (sign.getLine(0).equalsIgnoreCase("§a-§e-§b-§c-§d-") && sign.getLine(1).equalsIgnoreCase("§b§lPLACA")
+			if (sign.getLine(0).equalsIgnoreCase("ï¿½a-ï¿½e-ï¿½b-ï¿½c-ï¿½d-") && sign.getLine(1).equalsIgnoreCase("ï¿½bï¿½lPLACA")
 					&& sign.getLine(2).equalsIgnoreCase("Sopas")
-					&& sign.getLine(3).equalsIgnoreCase("§a-§e-§b-§c-§d-")) {
-				final Inventory v = Bukkit.createInventory((InventoryHolder) null, 36, "§aSopas");
+					&& sign.getLine(3).equalsIgnoreCase("ï¿½a-ï¿½e-ï¿½b-ï¿½c-ï¿½d-")) {
+				final Inventory v = Bukkit.createInventory((InventoryHolder) null, 36, "ï¿½aSopas");
 				for (int i = 0; i < 36; ++i) {
 					v.addItem(new ItemStack[] { new ItemStack(sopa) });
 				}
@@ -62,20 +62,20 @@ public class Placa implements Listener {
 	@EventHandler
 	public void onSignChangeRecraft(final SignChangeEvent event) {
 		if (event.getLine(0).equals("recraft")) {
-			event.setLine(0, "§a-§e-§b-§c-§d-");
-			event.setLine(1, "§b§lPLACA");
+			event.setLine(0, "ï¿½a-ï¿½e-ï¿½b-ï¿½c-ï¿½d-");
+			event.setLine(1, "ï¿½bï¿½lPLACA");
 			event.setLine(2, "Recraft");
-			event.setLine(3, "§a-§e-§b-§c-§d-");
+			event.setLine(3, "ï¿½a-ï¿½e-ï¿½b-ï¿½c-ï¿½d-");
 		}
 	}
 
 	@EventHandler
 	public void onSignChangeSoup(final SignChangeEvent event) {
 		if (event.getLine(0).equals("sopa")) {
-			event.setLine(0, "§a-§e-§b-§c-§d-");
-			event.setLine(1, "§b§lPLACA");
+			event.setLine(0, "ï¿½a-ï¿½e-ï¿½b-ï¿½c-ï¿½d-");
+			event.setLine(1, "ï¿½bï¿½lPLACA");
 			event.setLine(2, "Sopas");
-			event.setLine(3, "§a-§e-§b-§c-§d-");
+			event.setLine(3, "ï¿½a-ï¿½e-ï¿½b-ï¿½c-ï¿½d-");
 		}
 	}
 
@@ -85,22 +85,22 @@ public class Placa implements Listener {
 				|| e.getClickedBlock().getType() == Material.SIGN_POST
 				|| e.getClickedBlock().getType() == Material.WALL_SIGN)) {
 			final Sign sign = (Sign) e.getClickedBlock().getState();
-			if (sign.getLine(0).equalsIgnoreCase("§a-§e-§b-§c-§d-") && sign.getLine(1).equalsIgnoreCase("§b§lPLACA")
+			if (sign.getLine(0).equalsIgnoreCase("ï¿½a-ï¿½e-ï¿½b-ï¿½c-ï¿½d-") && sign.getLine(1).equalsIgnoreCase("ï¿½bï¿½lPLACA")
 					&& sign.getLine(2).equalsIgnoreCase("Recraft")
-					&& sign.getLine(3).equalsIgnoreCase("§a-§e-§b-§c-§d-")) {
+					&& sign.getLine(3).equalsIgnoreCase("ï¿½a-ï¿½e-ï¿½b-ï¿½c-ï¿½d-")) {
 				final ItemStack cogu = new ItemStack(Material.RED_MUSHROOM, 64);
 				final ItemMeta n = cogu.getItemMeta();
-				n.setDisplayName("§cCogumelo");
+				n.setDisplayName("ï¿½cCogumelo");
 				cogu.setItemMeta(n);
 				final ItemStack cogu2 = new ItemStack(Material.BROWN_MUSHROOM, 64);
 				final ItemMeta m = cogu2.getItemMeta();
-				m.setDisplayName("§eCogumelo");
+				m.setDisplayName("ï¿½eCogumelo");
 				cogu2.setItemMeta(m);
 				final ItemStack pote = new ItemStack(Material.BOWL, 64);
 				final ItemMeta o = pote.getItemMeta();
-				o.setDisplayName("§7Pote");
+				o.setDisplayName("ï¿½7Pote");
 				pote.setItemMeta(o);
-				final Inventory v = Bukkit.createInventory((InventoryHolder) null, 9, "§aRecraft");
+				final Inventory v = Bukkit.createInventory((InventoryHolder) null, 9, "ï¿½aRecraft");
 				for (int i = 0; i < 3; ++i) {
 					v.addItem(new ItemStack[] { new ItemStack(pote) });
 				}

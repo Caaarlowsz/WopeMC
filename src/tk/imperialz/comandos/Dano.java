@@ -6,12 +6,12 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import tk.imperialz.Main;
+import com.github.caaarlowsz.wopemc.kitpvp.WopePvP;
 
 public class Dano implements CommandExecutor {
-	public Main m;
+	public WopePvP m;
 
-	public Dano(final Main m) {
+	public Dano(final WopePvP m) {
 		this.m = m;
 	}
 
@@ -22,22 +22,22 @@ public class Dano implements CommandExecutor {
 				final Player todos = onlinePlayers[i];
 				final Player p = (Player) Sender;
 				if (!this.m.perm.isMod(p)) {
-					p.sendMessage(Main.perma);
+					p.sendMessage(WopePvP.perma);
 					return true;
 				}
 				if (Args.length != 1) {
-					p.sendMessage("§4§lDANO §fUtilize: /dano <on> <off>");
+					p.sendMessage("ï¿½4ï¿½lDANO ï¿½fUtilize: /dano <on> <off>");
 					return true;
 				}
 				if (Args[0].equalsIgnoreCase("off")) {
 					Bukkit.getServer()
-							.broadcastMessage("§4§lDANO §fO dano do servidor foi desativado por " + p.getDisplayName());
+							.broadcastMessage("ï¿½4ï¿½lDANO ï¿½fO dano do servidor foi desativado por " + p.getDisplayName());
 					todos.getWorld().setPVP(false);
 					return true;
 				}
 				if (Args[0].equalsIgnoreCase("on")) {
 					Bukkit.getServer()
-							.broadcastMessage("§4§lDANO §fO dano do servidor foi ativado por " + p.getDisplayName());
+							.broadcastMessage("ï¿½4ï¿½lDANO ï¿½fO dano do servidor foi ativado por " + p.getDisplayName());
 					todos.getWorld().setPVP(true);
 					return true;
 				}

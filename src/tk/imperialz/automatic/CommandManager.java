@@ -16,12 +16,12 @@ import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import tk.imperialz.Main;
+import com.github.caaarlowsz.wopemc.kitpvp.WopePvP;
 
 public class CommandManager {
-	private Main m;
+	private WopePvP m;
 
-	public CommandManager(final Main m) {
+	public CommandManager(final WopePvP m) {
 		this.loadCommands(this.m = m, "tk.imperialz.comandos");
 	}
 
@@ -32,13 +32,13 @@ public class CommandManager {
 					try {
 						CommandExecutor commandListener = null;
 						try {
-							final Constructor<?> con = commandClass.getConstructor(Main.class);
+							final Constructor<?> con = commandClass.getConstructor(WopePvP.class);
 							commandListener = (CommandExecutor) con.newInstance(plugin);
 						} catch (Exception ex) {
 							commandListener = (CommandExecutor) commandClass.newInstance();
 						}
 						this.loadCommand(plugin, commandListener);
-						System.out.println("§cComando Carregado: " + commandClass.getSimpleName() + " §cCom Sucesso");
+						System.out.println("ï¿½cComando Carregado: " + commandClass.getSimpleName() + " ï¿½cCom Sucesso");
 					} catch (Exception e2) {
 						System.out.print("Erro ao carregar o comando " + commandClass.getSimpleName());
 					}

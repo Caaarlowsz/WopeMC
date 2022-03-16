@@ -13,13 +13,13 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 
-import tk.imperialz.Main;
+import com.github.caaarlowsz.wopemc.kitpvp.WopePvP;
 import tk.imperialz.comandos.Build;
 
 public class eListeners implements Listener {
-	public Main m;
+	public WopePvP m;
 
-	public eListeners(final Main m) {
+	public eListeners(final WopePvP m) {
 		this.m = m;
 	}
 
@@ -58,7 +58,7 @@ public class eListeners implements Listener {
 				event.allow();
 			} else {
 				event.setKickMessage(
-						"§4§lWHITELIST §fO servidor est\u00e1 cheio, para entrar adquira §6VIP§f em §ewww.wopemc.com.br");
+						"ï¿½4ï¿½lWHITELIST ï¿½fO servidor est\u00e1 cheio, para entrar adquira ï¿½6VIPï¿½f em ï¿½ewww.wopemc.com.br");
 			}
 		}
 	}

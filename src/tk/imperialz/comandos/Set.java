@@ -5,13 +5,13 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import tk.imperialz.Main;
+import com.github.caaarlowsz.wopemc.kitpvp.WopePvP;
 import tk.imperialz.warps.WarpsAPI;
 
 public class Set implements CommandExecutor {
-	public Main m;
+	public WopePvP m;
 
-	public Set(final Main m) {
+	public Set(final WopePvP m) {
 		this.m = m;
 	}
 
@@ -19,74 +19,74 @@ public class Set implements CommandExecutor {
 		final Player p = (Player) sender;
 		if (cmd.getName().equalsIgnoreCase("set")) {
 			if (!this.m.perm.isGerente(p)) {
-				p.sendMessage(Main.perma);
+				p.sendMessage(WopePvP.perma);
 				return true;
 			}
 			if (args.length == 0) {
-				p.sendMessage("§5§lSET §fUtilize: /set <warp>");
+				p.sendMessage("ï¿½5ï¿½lSET ï¿½fUtilize: /set <warp>");
 				return true;
 			}
 			if (args[0].equalsIgnoreCase("spawn")) {
 				WarpsAPI.Set(p, "Spawn");
-				p.sendMessage("§6§lSET§f O local [§eSpawn] foi setado com sucesso.");
+				p.sendMessage("ï¿½6ï¿½lSETï¿½f O local [ï¿½eSpawn] foi setado com sucesso.");
 			} else if (args[0].equalsIgnoreCase("challenge")) {
 				WarpsAPI.Set(p, "Challenge");
-				p.sendMessage("§6§lSET§f O local [§eChallenge] foi setado com sucesso.");
+				p.sendMessage("ï¿½6ï¿½lSETï¿½f O local [ï¿½eChallenge] foi setado com sucesso.");
 			} else if (args[0].equalsIgnoreCase("fps")) {
 				WarpsAPI.Set(p, "Fps");
-				p.sendMessage("§6§lSET§f O local [§eFps] foi setado com sucesso.");
+				p.sendMessage("ï¿½6ï¿½lSETï¿½f O local [ï¿½eFps] foi setado com sucesso.");
 			} else if (args[0].equalsIgnoreCase("evento")) {
 				WarpsAPI.Set(p, "Evento");
-				p.sendMessage("§6§lSET§f O local [§eEvento] foi setado com sucesso.");
+				p.sendMessage("ï¿½6ï¿½lSETï¿½f O local [ï¿½eEvento] foi setado com sucesso.");
 			} else {
 				if (args[0].equalsIgnoreCase("1v1")) {
 					WarpsAPI.Set(p, "1v1");
-					p.sendMessage("§6§lSET§f O local [§e1v1] foi setado com sucesso.");
+					p.sendMessage("ï¿½6ï¿½lSETï¿½f O local [ï¿½e1v1] foi setado com sucesso.");
 					return true;
 				}
 				if (args[0].equalsIgnoreCase("1v1loc1")) {
 					WarpsAPI.Set(p, "1v1loc1");
-					p.sendMessage("§6§lSET§f O local [§eLOC1] foi setado com sucesso.");
+					p.sendMessage("ï¿½6ï¿½lSETï¿½f O local [ï¿½eLOC1] foi setado com sucesso.");
 					return true;
 				}
 				if (args[0].equalsIgnoreCase("1v1loc2")) {
 					WarpsAPI.Set(p, "1v1loc2");
-					p.sendMessage("§6§lSET§f O local [§eLOC2] foi setado com sucesso.");
+					p.sendMessage("ï¿½6ï¿½lSETï¿½f O local [ï¿½eLOC2] foi setado com sucesso.");
 					return true;
 				}
 				if (args[0].equalsIgnoreCase("knockback")) {
 					WarpsAPI.Set(p, "Knockback");
-					p.sendMessage("§6§lSET§f O local [§eKnockback] foi setado com sucesso.");
+					p.sendMessage("ï¿½6ï¿½lSETï¿½f O local [ï¿½eKnockback] foi setado com sucesso.");
 					return true;
 				}
 				if (args[0].equalsIgnoreCase("textura")) {
 					WarpsAPI.Set(p, "Textura");
-					p.sendMessage("§6§lSET§f O local [§eTextura] foi setado com sucesso.");
+					p.sendMessage("ï¿½6ï¿½lSETï¿½f O local [ï¿½eTextura] foi setado com sucesso.");
 					return true;
 				}
 				if (args[0].equalsIgnoreCase("ss")) {
 					WarpsAPI.Set(p, "Screenshare");
-					p.sendMessage("§6§lSET§f O local [§eScreenshare] foi setado com sucesso.");
+					p.sendMessage("ï¿½6ï¿½lSETï¿½f O local [ï¿½eScreenshare] foi setado com sucesso.");
 					return true;
 				}
 				if (args[0].equalsIgnoreCase("1")) {
 					WarpsAPI.Set(p, "1");
-					p.sendMessage("§6§lSET§f O local [§e1] foi setado com sucesso.");
+					p.sendMessage("ï¿½6ï¿½lSETï¿½f O local [ï¿½e1] foi setado com sucesso.");
 					return true;
 				}
 				if (args[0].equalsIgnoreCase("2")) {
 					WarpsAPI.Set(p, "2");
-					p.sendMessage("§6§lSET§f O local [§e2] foi setado com sucesso.");
+					p.sendMessage("ï¿½6ï¿½lSETï¿½f O local [ï¿½e2] foi setado com sucesso.");
 					return true;
 				}
 				if (args[0].equalsIgnoreCase("3")) {
 					WarpsAPI.Set(p, "3");
-					p.sendMessage("§6§lSET§f O local [§e3] foi setado com sucesso.");
+					p.sendMessage("ï¿½6ï¿½lSETï¿½f O local [ï¿½e3] foi setado com sucesso.");
 					return true;
 				}
 				if (args[0].equalsIgnoreCase("potion")) {
 					WarpsAPI.Set(p, "Potion");
-					p.sendMessage("§6§lSET§f O local [§ePotion] foi setado com sucesso.");
+					p.sendMessage("ï¿½6ï¿½lSETï¿½f O local [ï¿½ePotion] foi setado com sucesso.");
 					return true;
 				}
 			}

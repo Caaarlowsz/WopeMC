@@ -9,7 +9,7 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
-import tk.imperialz.Main;
+import com.github.caaarlowsz.wopemc.kitpvp.WopePvP;
 import tk.imperialz.apis.KitAPI;
 import tk.imperialz.gamer.DataManager;
 import tk.imperialz.gamer.PlayerData;
@@ -19,17 +19,17 @@ public class Scoreboarde {
 		final Scoreboard sb = Bukkit.getScoreboardManager().getNewScoreboard();
 		final Objective obj = sb.registerNewObjective("score", "dummy");
 		obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-		final FastOfflinePlayer line14 = new FastOfflinePlayer("§a");
-		final FastOfflinePlayer line15 = new FastOfflinePlayer("§fMatou:");
-		final FastOfflinePlayer line16 = new FastOfflinePlayer("§fMorreu:");
-		final FastOfflinePlayer line17 = new FastOfflinePlayer("§fStreak:");
-		final FastOfflinePlayer line18 = new FastOfflinePlayer("§5");
-		final FastOfflinePlayer line19 = new FastOfflinePlayer("§fKit:");
-		final FastOfflinePlayer line20 = new FastOfflinePlayer("§e");
-		final FastOfflinePlayer line21 = new FastOfflinePlayer("§fXP:");
-		final FastOfflinePlayer line22 = new FastOfflinePlayer("§fLiga:");
-		final FastOfflinePlayer line23 = new FastOfflinePlayer("§1");
-		final FastOfflinePlayer line24 = new FastOfflinePlayer("§6www.wopemc");
+		final FastOfflinePlayer line14 = new FastOfflinePlayer("ï¿½a");
+		final FastOfflinePlayer line15 = new FastOfflinePlayer("ï¿½fMatou:");
+		final FastOfflinePlayer line16 = new FastOfflinePlayer("ï¿½fMorreu:");
+		final FastOfflinePlayer line17 = new FastOfflinePlayer("ï¿½fStreak:");
+		final FastOfflinePlayer line18 = new FastOfflinePlayer("ï¿½5");
+		final FastOfflinePlayer line19 = new FastOfflinePlayer("ï¿½fKit:");
+		final FastOfflinePlayer line20 = new FastOfflinePlayer("ï¿½e");
+		final FastOfflinePlayer line21 = new FastOfflinePlayer("ï¿½fXP:");
+		final FastOfflinePlayer line22 = new FastOfflinePlayer("ï¿½fLiga:");
+		final FastOfflinePlayer line23 = new FastOfflinePlayer("ï¿½1");
+		final FastOfflinePlayer line24 = new FastOfflinePlayer("ï¿½6www.wopemc");
 		final Team l14 = sb.registerNewTeam("line14");
 		final Team l15 = sb.registerNewTeam("line13");
 		final Team l16 = sb.registerNewTeam("line12");
@@ -90,13 +90,13 @@ public class Scoreboarde {
 					final Team l20 = p.getScoreboard().getTeam("line3");
 					final Team l21 = p.getScoreboard().getTeam("line1");
 					l14.setSuffix("");
-					l15.setSuffix(" §7" + data.getKills());
-					l16.setSuffix(" §7" + data.getDeaths());
-					l17.setSuffix(" §7" + data.getStreak());
+					l15.setSuffix(" ï¿½7" + data.getKills());
+					l16.setSuffix(" ï¿½7" + data.getDeaths());
+					l17.setSuffix(" ï¿½7" + data.getStreak());
 					l18.setSuffix(" ");
-					l19.setSuffix(" §b" + KitAPI.getkit(p));
+					l19.setSuffix(" ï¿½b" + KitAPI.getkit(p));
 					l20.setSuffix("");
-					l21.setSuffix(".com.br   §f");
+					l21.setSuffix(".com.br   ï¿½f");
 				}
 			}
 		});
@@ -110,11 +110,11 @@ public class Scoreboarde {
 				for (int length = (onlinePlayers = Bukkit.getOnlinePlayers()).length, i = 0; i < length; ++i) {
 					final Player p = onlinePlayers[i];
 					if (p.getScoreboard().getObjective("score") != null) {
-						p.getScoreboard().getObjective("score").setDisplayName("§6§lWope§f§lMC");
+						p.getScoreboard().getObjective("score").setDisplayName("ï¿½6ï¿½lWopeï¿½fï¿½lMC");
 					}
 					Scoreboarde.update(p);
 				}
 			}
-		}.runTaskTimer(Main.plugin, 0L, 10L);
+		}.runTaskTimer(WopePvP.plugin, 0L, 10L);
 	}
 }
